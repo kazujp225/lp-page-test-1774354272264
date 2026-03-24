@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZettAI髪の毛はやす君</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { margin: 0; font-family: 'Noto Sans JP', sans-serif; background: #f9fafb; }
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  background: #ec4899;
+  padding: 0 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+}
+
+.header-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-cta {
+  display: inline-block;
+  background: #fff;
+  color: #ec4899;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.header-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(236,72,153,0.4);
+}
+
+.main-content {
+  max-width: 100%;
+  margin: 0;
+  background: #fff;
+}
+
+.main-content section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* お問い合わせフォームセクション */
+#contact {
+  background: #fce7f3;
+  padding: 60px 32px;
+  width: 100%;
+}
+
+.contact-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ec4899;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.form-label .required {
+  color: #ec4899;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #ec4899;
+  box-shadow: 0 0 0 3px rgba(236,72,153,0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.form-checkbox {
+  margin-top: 4px;
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #ec4899;
+}
+
+.form-checkbox-label {
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: #ec4899;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(236,72,153,0.3);
+}
+
+.form-submit:hover {
+  background: #be185d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(236,72,153,0.4);
+}
+
+.form-submit:active {
+  transform: translateY(0);
+}
+
+.footer {
+  background: #111827;
+  padding: 32px;
+  text-align: center;
+  color: #fff;
+  font-size: 0.875rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  margin-bottom: 16px;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 16px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ec4899;
+}
+
+.footer-copy {
+  opacity: 0.7;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .header {
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .header-logo {
+    font-size: 1rem;
+  }
+
+  .header-cta {
+    padding: 6px 16px;
+    font-size: 0.75rem;
+  }
+
+  #contact {
+    padding: 40px 16px;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .form-submit {
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  .footer {
+    padding: 24px 16px;
+    font-size: 0.75rem;
+  }
+
+  .footer-links a {
+    margin: 0 8px;
+    display: block;
+    margin-bottom: 8px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="index.html" class="header-logo">ZettAI髪の毛はやす君</a>
+  <a href="#contact" class="header-cta">お問い合わせ</a>
+</header>
+
+<main class="main-content">
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353667447-sec-25509.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353668365-sec-25510.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353703544-sec-25511.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353699107-sec-25512.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353734314-sec-25513.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353731470-sec-25514.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353770827-sec-25515.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353777237-sec-25516.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353814497-sec-25517.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353814188-sec-25518.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353853786-sec-25519.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353848760-sec-25520.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353884731-sec-25521.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353884389-sec-25522.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353928812-sec-25523.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353933776-sec-25524.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353972933-sec-25525.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774353968958-sec-25526.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774354015012-sec-25527.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774354008047-sec-25528.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774354045229-sec-25529.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774354048398-sec-25530.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774354100766-sec-25531.png" alt="" /></section>
+  <section><img src="https://jqpavdhxvmvuhwrbnosd.supabase.co/storage/v1/object/public/images/regenerate-1774354100252-sec-25532.png" alt="" /></section>
+
+  <!-- お問い合わせフォームセクション -->
+  <section id="contact">
+    <div class="contact-wrapper">
+      <h2 class="contact-title">お問い合わせ</h2>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">お名前 <span class="required">*</span></label>
+          <input type="text" class="form-input" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">メールアドレス <span class="required">*</span></label>
+          <input type="email" class="form-input" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">電話番号</label>
+          <input type="tel" class="form-input" name="phone">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">会社名</label>
+          <input type="text" class="form-input" name="company">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">お問い合わせ内容 <span class="required">*</span></label>
+          <textarea class="form-textarea" name="message" required></textarea>
+        </div>
+
+        <div class="form-checkbox-group">
+          <input type="checkbox" id="privacy" class="form-checkbox" name="privacy" required>
+          <label for="privacy" class="form-checkbox-label">個人情報の取り扱いに同意します <span class="required">*</span></label>
+        </div>
+
+        <button type="submit" class="form-submit">送信する</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="index.html">ホーム</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 ZettAI髪の毛はやす君</div>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(event) {
+  event.preventDefault();
+  alert('お問い合わせありがとうございます。\n確認メールをお送りいたします。');
+  event.target.reset();
+}
+</script>
+
+</body>
+</html>
